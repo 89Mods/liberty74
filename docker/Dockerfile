@@ -22,7 +22,6 @@ RUN apt-get autoremove -y --purge
 RUN apt-get install make
 RUN git clone --recursive https://github.com/89Mods/liberty74
 WORKDIR /liberty74
-RUN git checkout tholin-dev #TEMP
 RUN sed -ie 's/--break-system-packages//g' Makefile #pip always just says this doesn’t exist
 RUN make gen-pdk
 RUN sed -ie 's/open_results 1/open_results 0/g' openroad/chip.tcl
