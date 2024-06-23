@@ -72,9 +72,9 @@ link_design $design_name
 # Constraints
 ################################################################################
 
-create_clock -name clk -period 10 {i_clk_mux/Y}
-set_input_delay -clock clk 0 {*/FROM_HEADER}
-set_output_delay -clock clk 0 {*/TO_HEADER}
+create_clock -name clk -period 100 {i_clk}
+#set_input_delay -clock clk 0 {*/FROM_HEADER}
+#set_output_delay -clock clk 0 {*/TO_HEADER}
 
 foreach pin [delete_from_list [get_pins i_servisia_mem__i_sram/*] [get_pins \
     i_servisia_mem__i_sram/CS_N]] {
@@ -328,7 +328,7 @@ repair_clock_inverters
 placeDetail
 set ctsBuf [ list BUF_74LVC1G125 ]
 clock_tree_synthesis -root_buf $ctsBuf -buf_list $ctsBuf \
-    -balance_levels -clk_nets clk_i
+    -balance_levels -clk_nets i_clk
 
 # Repair and place newly inserted cells
 set_propagated_clock [all_clocks]
