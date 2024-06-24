@@ -1,0 +1,1 @@
+docker run -it --mount type=bind,src=$(pwd)/mount,target=/liberty74/design -e PROJECT=test -e SRC=./design/test.v liberty74 bash -c 'make synth && make chip && make pcb && cp out/$PROJECT.final.kicad_pcb design/'
