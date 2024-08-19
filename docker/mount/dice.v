@@ -1,11 +1,19 @@
 module dice(input i_clk, input RST, input ROLL, output [7:0] LEDS);
 
-PINOUT_8 i_pin8_LEDs(
+(* keep *) PINOUT_8 i_pin8_LEDs(
 	.TO_HEADER(LEDS)
 );
 
-PINOUT_8 i_pin8_ctrl(
+(* keep *) PINOUT_8 i_pin8_ctrl(
 	.TO_HEADER({3'b000, i_clk, 1'b0, RST, ROLL, 1'b0})
+);
+
+(* keep *) PULLDOWN_R0603 i_pulldown_rst(
+	.Y(RST)
+);
+
+(* keep *) PULLDOWN_R0603 i_pulldown_roll(
+	.Y(ROLL)
 );
 
 	reg[2:0] bcd;
